@@ -1,0 +1,49 @@
+---
+- name: resolve platform specific vars
+  include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+      skip: true
+      paths:
+        - '{{ role_path }}/vars'
+- name: check for install
+  become: yes
+  stat:
+    path: '{{ octant_install_dir }}'
+  changed_when: False
+  register: octant_binary
+- when: not octant_binary.stat.exists
+  block:
+    - name: download
+      become: yes
+      become_user: root
+      get_url:
+        url: '{{ octant_url }}'
+        dest: /tmp/{{ octant_archive }}
+        mode: 0644
+        checksum: '{{ octant_checksum }}'
+    - name: unarchive
+      become: yes
+      become_user: root
+      unarchive:
+        remote_src: yes
+        src: /tmp/{{ octant_archive }}
+        dest: '{{ octant_parent_install_dir }}'
+        creates: '{{ octant_install_exe }}'
+  always:
+    - name: cleanup
+      become: yes
+      become_user: root
+      file:
+        path: /tmp/{{ octant_archive }}
+        state: absent
+- name: link
+  become: yes
+  become_user: root
+  file:
+    src: '{{ octant_install_exe }}'
+    dest: '{{ octant_link }}'
+    state: link

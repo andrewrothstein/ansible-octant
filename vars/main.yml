@@ -1,0 +1,12 @@
+---
+# vars file for octant
+octant_platform: '{{ octant_os }}-{{ octant_arch }}'
+octant_name: octant_{{ octant_ver }}_{{ octant_platform }}
+octant_archive: '{{ octant_name }}.{{ octant_archive_type | default("tar.gz") }}'
+octant_url: '{{ octant_mirror }}/v{{ octant_ver }}/{{ octant_archive }}'
+octant_checksum: '{{ octant_checksums[octant_ver][octant_platform] }}'
+
+octant_exe: octant{{ octant_exe_suffix | default("") }}
+octant_install_dir: '{{ octant_parent_install_dir }}/{{ octant_name }}'
+octant_install_exe: '{{ octant_install_dir }}/{{ octant_exe }}'
+octant_link: '{{ octant_parent_install_dir }}/bin/{{ octant_exe }}'
