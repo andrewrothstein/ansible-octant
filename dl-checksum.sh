@@ -1,32 +1,38 @@
 #!/usr/bin/env sh
-VER=0.5.1
+set -e
 DIR=~/Downloads
-MIRROR=https://github.com/vmware/octant/releases/download/v${VER}
-
-RCHECKSUMS=$MIRROR/checksums.txt
-LCHECKSUMS=$DIR/octant-${VER}-checksums.txt
-
-if [ ! -e $LCHECKSUMS ]
-then
-    wget -q -O $LCHECKSUMS $RCHECKSUMS
-fi
+MIRROR=https://github.com/vmware/octant/releases/download
 
 dl()
 {
-    OS=$1
-    ARCH=$2
-    ARCHIVETYPE=$3
-    PLATFORM=${OS}-${ARCH}
-    FILE=octant_${VER}_${PLATFORM}.${ARCHIVETYPE}
-    URL=$MIRROR/$FILE
+    local ver=$1
+    local lchecksums=$2
+    local os=$3
+    local arch=$4
+    local archive_type=$5
+    local platform="${os}-${arch}"
+    local file=octant_${ver}_${platform}.${archive_type}
+    local url=$MIRROR/v$ver/$file
 
-    printf "    # %s\n" $URL
-    printf "    %s: sha256:%s\n" $PLATFORM `fgrep $FILE $LCHECKSUMS | awk '{print $1}'`
+    printf "    # %s\n" $url
+    printf "    %s: sha256:%s\n" $platform `fgrep $file $lchecksums | awk '{print $1}'`
 }
 
-printf "  '%s':\n" $VER
-dl Linux 64bit tar.gz
-dl macOS 64bit tar.gz
-dl Windows 64bit zip
+dl_ver() {
+    local ver=$1
 
+    local rchecksums=$MIRROR/v${ver}/checksums.txt
+    local lchecksums=$DIR/octant-${ver}-checksums.txt
 
+    if [ ! -e $lchecksums ];
+    then
+        wget -q -O $lchecksums $rchecksums
+    fi
+
+    printf "  '%s':\n" $ver
+    dl $ver $lchecksums Linux 64bit tar.gz
+    dl $ver $lchecksums macOS 64bit tar.gz
+    dl $ver $lchecksums Windows 64bit zip
+}
+
+dl_ver ${1:-0.9.1}
