@@ -9,7 +9,7 @@ dl()
     local lchecksums=$2
     local os=$3
     local arch=$4
-    local archive_type=$5
+    local archive_type=${5:-tar.gz}
     local platform="${os}-${arch}"
     local file=octant_${ver}_${platform}.${archive_type}
     local url=$MIRROR/v$ver/$file
@@ -30,9 +30,11 @@ dl_ver() {
     fi
 
     printf "  '%s':\n" $ver
-    dl $ver $lchecksums Linux 64bit tar.gz
-    dl $ver $lchecksums macOS 64bit tar.gz
+    dl $ver $lchecksums Linux 64bit
+    dl $ver $lchecksums Linux arm
+    dl $ver $lchecksums Linux arm64
+    dl $ver $lchecksums macOS 64bit
     dl $ver $lchecksums Windows 64bit zip
 }
 
-dl_ver ${1:-0.9.1}
+dl_ver ${1:-0.10.0}

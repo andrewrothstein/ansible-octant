@@ -1,6 +1,6 @@
 ---
 # defaults file for octant
-octant_ver: '0.9.1'
+octant_ver: '0.10.0'
 octant_os: Linux
 octant_arch: '64bit'
 octant_mirror: https://github.com/vmware/octant/releases/download
@@ -21,3 +21,14 @@ octant_checksums:
     macOS-64bit: sha256:adcbd4170ec6371608b4c509aaec2ec9003d8a247f5e82223a24d5ee2cab7edf
     # https://github.com/vmware/octant/releases/download/v0.9.1/octant_0.9.1_Windows-64bit.zip
     Windows-64bit: sha256:3d6131a5d5e68f8e7b3977b8b614d97daa3251f20280c486f0e124eb1e5cf458
+  '0.10.0':
+    # https://github.com/vmware/octant/releases/download/v0.10.0/octant_0.10.0_Linux-64bit.tar.gz
+    Linux-64bit: sha256:bb45f5ccc26554945f9f441f30ac796aa417939f5dfb8d4a0ca20671943918a0
+    # https://github.com/vmware/octant/releases/download/v0.10.0/octant_0.10.0_Linux-arm.tar.gz
+    Linux-arm: sha256:26078b0e119fee0b63fe715fdc4a62b3b44a1ca519381a1cb657ce25c546684d
+    # https://github.com/vmware/octant/releases/download/v0.10.0/octant_0.10.0_Linux-arm64.tar.gz
+    Linux-arm64: sha256:d00084de30e87388b96fbb5fa3049b1ea791f0fd3e3d50974ea09c64690e9207
+    # https://github.com/vmware/octant/releases/download/v0.10.0/octant_0.10.0_macOS-64bit.tar.gz
+    macOS-64bit: sha256:b13fd16e6f0d54ef15be34be19c220df706a8ab9dbb3a2f9cf777a6bd9c6ba37
+    # https://github.com/vmware/octant/releases/download/v0.10.0/octant_0.10.0_Windows-64bit.zip
+    Windows-64bit: sha256:dcbf6993dbd4aaa0933e85cf1c20b59b9c05f271d59abfc9317677bb62be48f2
