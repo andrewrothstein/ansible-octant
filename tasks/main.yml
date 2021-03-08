@@ -9,7 +9,7 @@
       skip: true
       paths:
         - '{{ role_path }}/vars'
-- name: check for install
+- name: check for install in {{ octant_install_dir }}
   become: yes
   stat:
     path: '{{ octant_install_dir }}'
@@ -17,30 +17,30 @@
   register: octant_binary
 - when: not octant_binary.stat.exists
   block:
-    - name: download
+    - name: downloading {{ octant_url }}...
       become: yes
       become_user: root
       get_url:
         url: '{{ octant_url }}'
-        dest: /tmp/{{ octant_archive }}
+        dest: '{{ octant_tmp_archive }}'
         mode: 0644
         checksum: '{{ octant_checksum }}'
-    - name: unarchive
+    - name: unarchiving {{ octant_tmp_archive }}
       become: yes
       become_user: root
       unarchive:
         remote_src: yes
-        src: /tmp/{{ octant_archive }}
+        src: '{{ octant_tmp_archive }}'
         dest: '{{ octant_parent_install_dir }}'
         creates: '{{ octant_install_exe }}'
   always:
-    - name: cleanup
+    - name: rm {{ octant_tmp_archive }}
       become: yes
       become_user: root
       file:
-        path: /tmp/{{ octant_archive }}
+        path: '{{ octant_tmp_archive }}'
         state: absent
-- name: link
+- name: linking {{ octant_link }} to {{ octant_install_exe }}
   become: yes
   become_user: root
   file:

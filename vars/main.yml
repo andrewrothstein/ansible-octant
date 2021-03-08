@@ -3,6 +3,7 @@
 octant_platform: '{{ octant_os }}-{{ octant_arch }}'
 octant_name: octant_{{ octant_ver }}_{{ octant_platform }}
 octant_archive: '{{ octant_name }}.{{ octant_archive_type | default("tar.gz") }}'
+octant_tmp_archive: /tmp/{{ octant_archive }}
 octant_url: '{{ octant_mirror }}/v{{ octant_ver }}/{{ octant_archive }}'
 octant_checksum: '{{ octant_checksums[octant_ver][octant_platform] }}'
 
