@@ -1,6 +1,6 @@
 andrewrothstein.octant
 =========
-[![Build Status](https://travis-ci.org/andrewrothstein/ansible-octant.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-octant)
+![Build Status](https://github.com/andrewrothstein/ansible-octant/actions/workflows/build.yml/badge.svg)
 
 Installs VMWare's [octant](https://github.com/vmware/octant)
 
