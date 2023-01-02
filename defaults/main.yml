@@ -1,8 +1,8 @@
 ---
 # defaults file for octant
 octant_ver: 0.25.1
-octant_os: Linux
-octant_arch: '64bit'
+octant_arch_map:
+  x86_64: '64bit'
 octant_mirror: https://github.com/vmware/octant/releases/download
 octant_parent_install_dir: /usr/local
 

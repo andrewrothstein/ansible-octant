@@ -1,6 +1,4 @@
 ---
-dependencies:
-- andrewrothstein.unarchive-deps
 galaxy_info:
   author: Andrew Rothstein
   company: BlackRock Financial Management
@@ -24,12 +22,14 @@ galaxy_info:
   - name: EL
     versions:
     - 8
+    - 9
   - name: Fedora
     versions:
-    - 35
     - 36
+    - 37
   - name: Ubuntu
     versions:
     - bionic
     - focal
+    - jammy
   role_name: octant

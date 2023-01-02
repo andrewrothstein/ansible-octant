@@ -26,7 +26,7 @@ dl_ver() {
 
     if [ ! -e $lchecksums ];
     then
-        wget -q -O $lchecksums $rchecksums
+        curl -sSLf -o $lchecksums $rchecksums
     fi
 
     printf "  '%s':\n" $ver

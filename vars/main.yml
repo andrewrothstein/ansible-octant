@@ -1,5 +1,7 @@
 ---
 # vars file for octant
+octant_os: '{{ ansible_system }}'
+octant_arch: '{{ octant_arch_map[ansible_architecture] }}'
 octant_platform: '{{ octant_os }}-{{ octant_arch }}'
 octant_name: octant_{{ octant_ver }}_{{ octant_platform }}
 octant_archive: '{{ octant_name }}.{{ octant_archive_type | default("tar.gz") }}'
