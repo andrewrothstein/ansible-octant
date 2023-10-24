@@ -1,4 +1,0 @@
----
-jobs:
-  bake-ansible-images:
-    uses: github.com/andrewrothstein/.github/workflow-templates/bake-ansible-images-v1.yml@develop
